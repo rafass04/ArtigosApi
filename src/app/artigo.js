@@ -7,13 +7,37 @@ class Artigo {
     this.conexao = conexao;
   }
 
-  criarArtigo(autor, titulo, texto) {
-    this.conexao.inserir('Artigos', {
+  async criarArtigo(autor, titulo, texto) {
+    return this.conexao.inserir('Artigos', {
       titulo,
       autor,
       texto,
       data: new Date().toUTCString(),
     });
+  }
+
+  async obterArtigo(id) {
+    const result = await this.conexao.obter('Artigos', { _id: id });
+    return result[0];
+  }
+
+  async listarArtigos() {
+    return this.conexao.obter('Artigos', {});
+  }
+
+  async editarArtigo(titulo, texto, id) {
+    const dados = {
+      titulo,
+      texto,
+      dataAlteracao: new Date().toUTCString(),
+    };
+    return this.conexao.atualizar(
+      'Artigos', dados, id,
+    );
+  }
+
+  async deletarArtigo(id) {
+    return this.conexao.deletar('Artigos', id);
   }
 }
 

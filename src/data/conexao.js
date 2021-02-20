@@ -20,7 +20,7 @@ class Conexao {
 
   async atualizar(colecao, dados, id) {
     const coll = this.db.collection(colecao);
-    await coll.updateOne({ _id: id }, dados);
+    await coll.updateOne({ _id: id }, { $set: dados });
     return dados;
   }
 
