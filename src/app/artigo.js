@@ -9,10 +9,10 @@ class Artigo {
 
   async criarArtigo(autor, titulo, texto) {
     return this.conexao.inserir('Artigos', {
-      titulo,
+      title: titulo,
       autor,
-      texto,
-      data: new Date().toUTCString(),
+      article: texto,
+      date: new Date().toUTCString(),
     });
   }
 

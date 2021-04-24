@@ -30,7 +30,7 @@ async function makeRoutes(app, conexao, bodyParser, idParser) {
   app.post('/', bodyParser, async (req, res) => {
     try {
       const { body, params } = req;
-      await controller.criarArtigo(body.autor, body.titulo, body.texto, params.id);
+      await controller.criarArtigo(body.autor, body.title, body.article, params.id);
       res.send({ ok: true });
     } catch (error) {
       res.send({ ok: false, error: error.message });
@@ -49,7 +49,7 @@ async function makeRoutes(app, conexao, bodyParser, idParser) {
   app.put('/:id', bodyParser, async (req, res) => {
     try {
       const { body, params } = req;
-      await controller.editarArtigo(body.titulo, body.texto, params.id);
+      await controller.editarArtigo(body.title, body.article, params.id);
       res.send({ ok: true });
     } catch (error) {
       res.send({ ok: false, error: error.message });
